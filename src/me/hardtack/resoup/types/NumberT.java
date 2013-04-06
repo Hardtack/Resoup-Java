@@ -19,4 +19,8 @@ public class NumberT implements Type {
 	public String toString() {
 		return this.value.toString();
 	}
+	@Override
+	public String repr() {
+		return this.toString();
+	}
 }

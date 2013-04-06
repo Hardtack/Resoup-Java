@@ -23,7 +23,7 @@ public class DefineMacro extends Macro {
 		if(first instanceof ListT){
 			ListT list = (ListT)first;
 			Symbol fname = (Symbol) list.get(0);
-			ListT fargs = new ListT(list.subList(1, list.size()-1));
+			ListT fargs = new ListT(list.subList(1, list.size()));
 			List<Symbol> symbols = new ArrayList<Symbol>();
 			for(Type farg:fargs){
 				symbols.add((Symbol) farg);

@@ -47,4 +47,8 @@ public class Symbol extends Object implements Type, CharSequence {
 	public int hashCode() {
 		return this.name.hashCode();
 	}
+	@Override
+	public String repr() {
+		return this.toString();
+	}
 }

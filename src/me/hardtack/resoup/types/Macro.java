@@ -6,4 +6,9 @@ import me.hardtack.resoup.Environment;
 
 public abstract class Macro implements Type {
 	public abstract Type execute(Environment env, List<Type> args);
+
+	@Override
+	public String repr() {
+		return this.toString();
+	}
 }

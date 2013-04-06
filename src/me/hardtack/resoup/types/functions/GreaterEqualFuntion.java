@@ -20,7 +20,7 @@ public class GreaterEqualFuntion extends BuiltinFunction {
 		Number first = ((NumberT)args.get(0)).getValue();
 		for(int i = 1; i < args.size(); i++){
 			Number n = ((NumberT)args.get(1)).getValue();
-			if(!(Util.compare(first, n) > 0)){
+			if(!(Util.compare(first, n) >= 0)){
 				return new Bool(false);
 			}
 		}

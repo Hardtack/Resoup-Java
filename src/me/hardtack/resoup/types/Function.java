@@ -10,50 +10,69 @@ public class Function implements Type {
 	private Type body;
 	private Environment env;
 	private Str name;
-	
+
 	public List<Symbol> getArgSymbols() {
 		return argSymbols;
 	}
+
 	public void setArgSymbols(List<Symbol> argSymbols) {
 		this.argSymbols = argSymbols;
 	}
+
 	public Type getBody() {
 		return body;
 	}
+
 	public void setBody(Type body) {
 		this.body = body;
 	}
+
 	public Environment getEnv() {
 		return env;
 	}
+
 	public void setEnv(Environment env) {
 		this.env = env;
 	}
+
 	public Str getName() {
 		return name;
 	}
+
 	public void setName(Str name) {
 		this.name = name;
 	}
-	
-	public Function(List<Symbol> argSymbols, Type body, Environment env, Str name){
+
+	public Function(List<Symbol> argSymbols, Type body, Environment env,
+			Str name) {
 		this.argSymbols = argSymbols;
 		this.body = body;
 		this.env = env;
 		this.name = name;
 	}
-	
-	public Function(List<Symbol> symbols, Type body, Environment env) {
-		this(symbols,body,env,new Str("¥ë"));
-		
+
+	public Function(List<Symbol> argSymbols, Type body, Environment env) {
+		this(argSymbols, body, env, new Str("¥ë"));
+
 	}
-	public Type call(List<Type> args){
-		Environment env = new Environment(this.env);
-		for(int i = 0; i < this.argSymbols.size(); i++){
+
+	public Type call(List<Type> args) {
+		Environment newEnv = new Environment(this.env);
+		for (int i = 0; i < this.argSymbols.size(); i++) {
 			Symbol symbol = this.argSymbols.get(i);
 			Type arg = args.get(i);
-			env.put(symbol, arg);
+			newEnv.put(symbol, arg);
 		}
-		return Evaluator.evaluate(body, env);
+		return Evaluator.evaluate(body, newEnv);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("<Function(%s)>", this.name);
+	}
+
+	@Override
+	public String repr() {
+		return this.toString();
 	}
 }

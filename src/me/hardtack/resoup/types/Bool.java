@@ -23,4 +23,9 @@ public class Bool implements Type {
 			return "#F";
 		}
 	}
+	
+	@Override
+	public String repr() {
+		return this.toString();
+	}
 }

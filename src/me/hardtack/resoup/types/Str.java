@@ -3,6 +3,14 @@ package me.hardtack.resoup.types;
 public class Str implements Type, CharSequence {
 	private String value;
 
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 	public Str(String value) {
 		this.value = value;
 	}
@@ -24,6 +32,11 @@ public class Str implements Type, CharSequence {
 	
 	@Override
 	public String toString() {
+		return this.value;
+	}
+	
+	@Override
+	public String repr() {
 		String repr = new String(this.value);
 		repr.replace("\"", "\\\"");
 		return '"'+repr+'"';

@@ -5,4 +5,8 @@ public class Null implements Type {
 	public String toString() {
 		return "(NULL)";
 	}
+	@Override
+	public String repr() {
+		return "";
+	}
 }

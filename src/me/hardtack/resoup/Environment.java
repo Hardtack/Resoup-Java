@@ -3,18 +3,25 @@ package me.hardtack.resoup;
 import java.util.HashMap;
 
 import me.hardtack.resoup.types.Bool;
+import me.hardtack.resoup.types.Null;
 import me.hardtack.resoup.types.Symbol;
 import me.hardtack.resoup.types.Type;
 import me.hardtack.resoup.types.functions.AddFunction;
+import me.hardtack.resoup.types.functions.CarFunction;
+import me.hardtack.resoup.types.functions.CdrFunction;
+import me.hardtack.resoup.types.functions.ConsFunction;
 import me.hardtack.resoup.types.functions.DisplayFunction;
 import me.hardtack.resoup.types.functions.DivideFunction;
 import me.hardtack.resoup.types.functions.ExitFunction;
 import me.hardtack.resoup.types.functions.GreaterEqualFuntion;
 import me.hardtack.resoup.types.functions.GreaterFunction;
+import me.hardtack.resoup.types.functions.IntFunction;
+import me.hardtack.resoup.types.functions.LengthFunction;
 import me.hardtack.resoup.types.functions.LessEqualFunction;
 import me.hardtack.resoup.types.functions.LessFunction;
 import me.hardtack.resoup.types.functions.MultiplyFunction;
 import me.hardtack.resoup.types.functions.NewlineFunction;
+import me.hardtack.resoup.types.functions.ReadFunction;
 import me.hardtack.resoup.types.functions.SubstactFunction;
 import me.hardtack.resoup.types.macros.BeginMacro;
 import me.hardtack.resoup.types.macros.DefineMacro;
@@ -47,8 +54,15 @@ public class Environment extends HashMap<Symbol, Type> {
 			globalEnvironment.put(new Symbol(">="), new GreaterEqualFuntion(globalEnvironment));
 			globalEnvironment.put(new Symbol("<"), new LessFunction(globalEnvironment));
 			globalEnvironment.put(new Symbol("<="), new LessEqualFunction(globalEnvironment));
+			globalEnvironment.put(new Symbol("len"), new LengthFunction(globalEnvironment));
+			globalEnvironment.put(new Symbol("car"), new CarFunction(globalEnvironment));
+			globalEnvironment.put(new Symbol("cdr"), new CdrFunction(globalEnvironment));
+			globalEnvironment.put(new Symbol("cons"), new ConsFunction(globalEnvironment));
 			globalEnvironment.put(new Symbol("display"), new DisplayFunction(globalEnvironment));
+			globalEnvironment.put(new Symbol("eval"), new DisplayFunction(globalEnvironment));
 			globalEnvironment.put(new Symbol("newline"), new NewlineFunction(globalEnvironment));
+			globalEnvironment.put(new Symbol("read"), new ReadFunction(globalEnvironment));
+			globalEnvironment.put(new Symbol("int"), new IntFunction(globalEnvironment));
 			globalEnvironment.put(new Symbol("exit"), new ExitFunction(globalEnvironment));
 			
 			// Macros
@@ -58,6 +72,7 @@ public class Environment extends HashMap<Symbol, Type> {
 			globalEnvironment.put(new Symbol("lambda"), new LambdaMacro());
 			
 			// Values
+			globalEnvironment.put(new Symbol("Null"), new Null());
 			globalEnvironment.put(new Symbol("true"), new Bool(true));
 			globalEnvironment.put(new Symbol("false"), new Bool(false));
 		}
